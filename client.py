@@ -13,7 +13,7 @@ def main():
     parser.add_argument('--end-line', type=int, required=True,
                         help='The end line number of the selected text')
     parser.add_argument('--filename', type=str, required=True,
-                        help='The active buffer's filename')
+                        help='The active buffer\'s filename')
     parser.add_argument('--query', type=str, required=True,
                         help='The user-specified query string')
     parser.add_argument('--api-key', type=str, required=True,
@@ -58,4 +58,4 @@ def main():
     # Print the response
     print('Response:')
     print('---------')
-    print(json
+    print(json)
