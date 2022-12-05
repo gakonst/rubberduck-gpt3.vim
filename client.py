@@ -5,6 +5,30 @@ import json
 import os
 import requests
 
+def query(args):
+    # Read the chatgpt API key from the environment, if provided
+    api_key = args.api_key
+    env_api_key = os.environ.get('PAIR_API_KEY')
+    if env_api_key:
+        api_key = env_api_key
+
+    # Construct the post request to the chatgpt API
+    headers = {
+        'Content-Type': 'application/json',
+        'Authorization': f'Bearer {api_key}',
+    }
+    data = {
+        'model': args.model,
+        'prompt': args.query,
+        'temperature': 0.5,
+        'max_tokens': 2048,
+        'top_p': 1,
+        'num_return_sequences': 1,
+    }
+    response = requests.post('https://api.openai.com/v1/completions', headers=headers, json=data)
+
+    return response
+
 def main():
     # Parse the command-line arguments
     parser = argparse.ArgumentParser()
@@ -33,31 +57,7 @@ def main():
     args_dict = vars(args)
     args_dict['file_contents'] = file_contents
     args_dict['selected_lines'] = selected_lines
-
-    # Read the chatgpt API key from the environment, if provided
-    api_key = args.api_key
-    env_api_key = os.environ.get('PAIR_API_KEY')
-    if env_api_key:
-        api_key = env_api_key
-
-    # Construct the post request to the chatgpt API
-    headers = {
-        'Content-Type': 'application/json',
-        'Authorization': f'Bearer {api_key}',
-    }
-    data = {
-        'model': args.model,
-        'prompt': args.query,
-        'temperature': 0.5,
-        'max_tokens': 2048,
-        'top_p': 1,
-        'num_return_sequences': 1,
-    }
-    response = requests.post('https://api.openai.com/v1/completions', headers=headers, json=data)
-
-    # Print the response
-    print('Response:')
-    print('---------')
+    response = query(args)
     print(response.json())
 
 
