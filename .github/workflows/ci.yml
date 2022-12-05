@@ -31,5 +31,4 @@ jobs:
       - name: Install dependencies
         run: poetry install -v
       - name: Run black
-        run: poetry run black .
-       run: black .
+        run: poetry run black . --check
