@@ -58,4 +58,8 @@ def main():
     # Print the response
     print('Response:')
     print('---------')
-    print(json)
+    print(response.json())
+
+
+if __name__ == '__main__':
+    main()
