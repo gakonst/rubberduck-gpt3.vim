@@ -6,7 +6,7 @@ Rubber duck programming is a debugging technique in which explaining one's code 
 
 ## Installation
 
-To install the plugin, copy the `vim-python-script-runner.vim` file to your `~/.vim/plugin` directory.
+To install the plugin, copy the `vim-python-script-runner.vim` file to your `~/.vim/plugin` directory, along with the Python script, and edit the path to the python script in the vim plugin. You'll also need to have `requests` installed for the Python script.
 
 ## Usage
 
