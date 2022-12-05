@@ -64,4 +64,4 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-poetry-
       - name: Run black
-        run: poetry run black . --check
+        run: poetry run black . --check --skip-string-normalization
