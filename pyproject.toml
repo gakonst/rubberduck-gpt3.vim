@@ -1,10 +1,10 @@
 [tool.poetry]
-name = "pair-vim"
+name = "rubberduck-gpt3.vim"
 version = "0.1.0"
 description = ""
 authors = ["Georgios Konstantopoulos <me@gakonst.com>"]
 readme = "README.md"
-packages = [{include = "pair"}]
+packages = [{include = "rubberduck-gpt3"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
