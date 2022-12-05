@@ -1,13 +1,13 @@
 import unittest
 from unittest.mock import patch
 
-from python_script import run_python_script
+from python_script import query
 
 
 class TestPythonScript(unittest.TestCase):
     @patch('python_script.requests.post')
-    def test_run_python_script(self, mock_post):
-        # Set the mock response from the OpenAI API
+    def test_query(self, mock_post):
+        # Set the mock response from the chatgpt API
         mock_response = {
             'data': {
                 'code_suggs': [
@@ -20,13 +20,20 @@ class TestPythonScript(unittest.TestCase):
         }
         mock_post.return_value = mock_response
 
-        # Run the Python script with the selected lines, filename, and query
-        selected_lines = 'def foo(x, y):\n    return x * y\n'
-        filename = 'foo.py'
-        query = 'How do I rewrite this to return the sum instead of the product?'
-        result = run_python_script(selected_lines, filename, query)
+        # Set the command line arguments
+        args = {
+            'start_line': 4,
+            'end_line': 20,
+            'filename': 'foo.py',
+            'query': 'How do I refactor this?',
+            'api_key': 'chatgpt-api-key',
+            'model': 'text-davinci-002'
+        }
 
-        # Assert that the correct code suggestions and explanation are returned
+        # Run the query function
+        result = query(args)
+
+        # Assert that the correct response is returned
         expected_result = {
             'code_suggs': [
                 {
@@ -36,3 +43,4 @@ class TestPythonScript(unittest.TestCase):
             ]
         }
         self.assertEqual(result, expected_result)
+
