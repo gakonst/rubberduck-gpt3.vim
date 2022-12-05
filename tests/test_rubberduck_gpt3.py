@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import patch
 
-from client import query
+from rubberduck_gpt3 import query
 
 
 class TestPythonScript(unittest.TestCase):
