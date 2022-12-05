@@ -11,10 +11,27 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: 3.8
-      - name: Install Poetry
-        run: curl -sSL https://install.python-poetry.org/ | python
-      - name: Install dependencies
-        run: poetry install -v
+
+      # Install Poetry and Cache Dependencies
+      - name: Install Poetry and Cache Dependencies
+        run: |
+          curl -sSL https://install.python-poetry.org/ | python
+          poetry config virtualenvs.create false
+          poetry install
+        env:
+          POETRY_VIRTUALENVS_IN_PROJECT: true
+          PIP_CACHE_DIR: "${{ runner.temp }}/pip-cache"
+        shell: bash
+
+      # Restore Poetry Cache
+      - name: Restore Poetry Cache
+        uses: actions/cache@v2
+        with:
+          path: /path/to/your/project/.venv
+          key: ${{ runner.os }}-poetry-${{ hashFiles('poetry.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-poetry-
+
       - name: Run tests
         run: poetry run pytest
 
@@ -26,9 +43,25 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: 3.8
-      - name: Install Poetry
-        run: curl -sSL https://install.python-poetry.org/ | python
-      - name: Install dependencies
-        run: poetry install -v
+
+      # Install Poetry and Cache Dependencies
+      - name: Install Poetry and Cache Dependencies
+        run: |
+          curl -sSL https://install.python-poetry.org/ | python
+          poetry config virtualenvs.create false
+          poetry install
+        env:
+          POETRY_VIRTUALENVS_IN_PROJECT: true
+          PIP_CACHE_DIR: "${{ runner.temp }}/pip-cache"
+        shell: bash
+
+      # Restore Poetry Cache
+      - name: Restore Poetry Cache
+        uses: actions/cache@v2
+        with:
+          path: /path/to/your/project/.venv
+          key: ${{ runner.os }}-poetry-${{ hashFiles('poetry.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-poetry-
       - name: Run black
         run: poetry run black . --check
