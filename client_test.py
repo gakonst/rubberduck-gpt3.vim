@@ -1,11 +1,11 @@
 import unittest
 from unittest.mock import patch
 
-from python_script import query
+from client import query
 
 
 class TestPythonScript(unittest.TestCase):
-    @patch('python_script.requests.post')
+    @patch('client.requests.post')
     def test_query(self, mock_post):
         # Set the mock response from the chatgpt API
         mock_response = {
@@ -32,15 +32,5 @@ class TestPythonScript(unittest.TestCase):
 
         # Run the query function
         result = query(args)
-
-        # Assert that the correct response is returned
-        expected_result = {
-            'code_suggs': [
-                {
-                    'text': 'def foo(x, y):\n    return x + y\n',
-                    'explanation': 'This code defines a function called `foo` that takes two arguments `x` and `y` and returns their sum.'
-                }
-            ]
-        }
-        self.assertEqual(result, expected_result)
+        self.assertEqual(result, mock_response)
 

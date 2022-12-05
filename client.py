@@ -7,7 +7,7 @@ import requests
 
 def query(args):
     # Read the chatgpt API key from the environment, if provided
-    api_key = args.api_key
+    api_key = args['api_key']
     env_api_key = os.environ.get('PAIR_API_KEY')
     if env_api_key:
         api_key = env_api_key
@@ -18,8 +18,8 @@ def query(args):
         'Authorization': f'Bearer {api_key}',
     }
     data = {
-        'model': args.model,
-        'prompt': args.query,
+        'model': args['model'],
+        'prompt': args['query'],
         'temperature': 0.5,
         'max_tokens': 2048,
         'top_p': 1,
