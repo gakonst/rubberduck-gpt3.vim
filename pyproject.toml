@@ -11,6 +11,9 @@ python = "^3.10"
 requests = "^2.28.1"
 unittest = "^0.0"
 
+[tool.poetry.dev-dependencies]
+pytest = "^6.0"
+black = "^20.8b1"
 
 [build-system]
 requires = ["poetry-core"]
