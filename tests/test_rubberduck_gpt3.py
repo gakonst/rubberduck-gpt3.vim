@@ -5,7 +5,7 @@ from rubberduck_gpt3 import query
 
 
 class TestPythonScript(unittest.TestCase):
-    @patch("client.requests.post")
+    @patch("rubberduck_gpt3.requests.post")
     def test_query(self, mock_post):
         # Set the mock response from the chatgpt API
         mock_response = {

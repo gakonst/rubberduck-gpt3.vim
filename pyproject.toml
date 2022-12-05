@@ -4,7 +4,7 @@ version = "0.1.0"
 description = ""
 authors = ["Georgios Konstantopoulos <me@gakonst.com>"]
 readme = "README.md"
-packages = [{include = "rubberduck-gpt3"}]
+packages = [{include = "rubberduck_gpt3"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
