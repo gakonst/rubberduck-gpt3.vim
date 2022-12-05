@@ -73,7 +73,16 @@ def main():
     args_dict = vars(args)
     args_dict["file_contents"] = file_contents
     args_dict["selected_lines"] = selected_lines
-    response = query(args)
+
+    try:
+        # Make the chatgpt API request
+        response = query(args)
+    except requests.exceptions.RequestException as e:
+        print(f"An error occurred while making the chatgpt API request: {e}")
+        exit(1)
+    except Exception as e:
+        print(f"An error occurred while processing the chatgpt response: {e}")
+        exit(1)
     print(response.json())
 
 

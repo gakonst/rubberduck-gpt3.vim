@@ -16,6 +16,34 @@ To install the plugin, copy the `vim-python-script-runner.vim` file to your `~/.
 4. Enter your query when prompted (e.g. "How do I rewrite this more idiomatically?")
 5. The chatGPT API will generate code suggestions and natural language explanations based on your selected lines and query
 
+## Usage as a library
+
+Here is an example of how to use the query function from the client.py file as a library:
+
+```
+# Import the query function from the client.py file
+from client import query
+
+# Set the arguments for the query function
+args = {
+    "lines": "the selected lines of code",
+    "filename": "the active buffer's filename",
+    "query": "the user-specified query",
+    "api_key": "the chatgpt API key",
+    "model": "the chatgpt model to use",
+}
+
+# Call the query function with the specified arguments
+response = query(args)
+
+# Print the response from the chatgpt API
+print(response.json())
+```
+
+This code imports the query function from the client.py file, sets the arguments for the function, and then calls the function with the specified arguments. The query function makes a request to the chatGPT API using the provided arguments, and returns the response from the API. The response is then printed to the console using the print function.
+
+To use the query function as a library, you will need to have the client.py file in the same directory as the file where you are calling the query function, and you will also need to have the requests module installed. Let me know if you have any other questions!
+
 ## Configuration
 
 The `vim-python-script-runner.vim` file contains the following configuration variables that you can modify:
